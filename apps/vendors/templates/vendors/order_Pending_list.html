@@ -1,0 +1,73 @@
+{% extends "vendor_main/vendor_main.html" %}
+{% load static %}
+{% block title %}Bitstore Vendor's panel{% endblock title %}
+{% block content %}
+    <!-- Content -->
+
+    <!-- Hoverable Table rows -->
+   
+    <div class="card m-3" >
+        <div class="container mt-0">
+            {% if messages %}
+            <div class="row justify-content-center mt-0">
+                {% include 'includes/alerts.html' %}
+            </div>
+            {% endif %}
+        </div>
+        <h5 class="card-header">All pending orders</h5>
+        <div class="table-responsive text-nowrap " style="min-height:80vh;" >
+            <table class="table table">
+                <thead>
+                    <tr>
+                        <th>NO.</th>
+                        <th>ORDER NUMBER</th>
+                        <th>PRODUCT NAME</th>
+                        <th>PRODUCT CATEGORY</th>
+                        <th>PRICE</th>
+                        <th>QUANTITY</th>
+                        <th>CREATED DATE</th>
+                        <th>STATUS</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    {% for order in order_list %}
+                    <tr>
+                        <a href="home">
+                            <td>{{forloop.counter}}</td>
+                            <td>{{order.order.order_number}}</td>
+                            <td>{{order.product.product_name}}</td>
+                            <td>{{order.product.category}}</td>
+                            <td>{{order.product.price}}</td>
+                            <td>{{order.quantity}}</td>
+                            <td>{{order.created_at}}</td>
+                            <td>{{order.order.status}}</td>
+                            <td>    
+                                <div class="dropdown">
+                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="">
+                                            <i class="bx bx-edit-alt me-1"></i>
+                                            Edit
+                                        </a>
+                                        <a class="dropdown-item" href="" 
+                                        onclick="return confirm('Please confirm to unlist this product')">
+                                            <i class="bx bx-trash me-1"></i>
+                                            Unlist
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </a>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--/ Hoverable Table rows -->
+    <!-- / Content -->
+{% endblock content %}

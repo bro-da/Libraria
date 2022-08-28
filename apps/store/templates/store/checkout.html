@@ -1,0 +1,119 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+<body class="animsition">
+{% block content %}
+
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+<form class="bg0 p-t-75 p-b-85" action="{% url 'place_order' %}" method="POST">
+	{% csrf_token %}
+	<div class="col-md-8 col-sm-12 col-xs-12">
+		<div class="p-t-15">
+			<span class="stext-112 cl8">
+				enter first name
+			</span>
+			<div class="bor8 bg0 m-b-22">
+				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="first_name" placeholder="first name">
+				
+			</div>
+			<span class="stext-112 cl8">
+				enter second name
+				</span>
+				<div class="bor8 bg0 m-b-22">
+					
+				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="last_name" placeholder="last name">
+			</div>
+			<span class="stext-112 cl8">
+				enter email
+				</span>
+			<div class="bor8 bg0 m-b-22">
+				
+				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="email" placeholder="@email.com">
+			</div>
+			<span class="stext-112 cl8">
+				enter phone number
+				</span>
+			<div class="bor8 bg0 m-b-22">
+				
+				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="phone" placeholder="phone number">
+
+			</div>
+			<span class="stext-112 cl8">
+				enter address 1
+				</span>
+			<div class="bor8 bg0 m-b-22">
+				
+				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="address_line_1" placeholder="address 1(required)">
+			</div>
+			<span class="stext-112 cl8">
+				enter address 2
+			</span>
+			<div class="bor8 bg0 m-b-22">
+					
+				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="address_line_2" placeholder="city">
+			</div>
+				<span class="stext-112 cl8">
+					city
+				</span>
+				<div class="bor8 bg0 m-b-22">
+					
+					<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="city" placeholder="city">
+				</div>
+				<span class="stext-112 cl8">
+					state
+				</span>
+				<div class="bor8 bg0 m-b-22">
+					<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="state">
+				</div>
+			
+
+			<!-- <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+				<select class="js-select2" name="payment">
+					<option>payment</option>
+					<option>cash on delivery</option>
+					<option>online payment</option>
+				</select>
+				<div class="dropDownSelect2"></div>
+			</div> -->
+
+			<span class="stext-112 cl8">
+				country
+				</span>
+			<div class="bor8 bg0 m-b-22">
+				
+				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="country" placeholder="country">
+			</div>
+		
+			
+				
+				
+				<span class="stext-112 cl8">
+					enter order note
+					</span>
+				<div class="bor8 bg0 m-b-22">
+					
+					<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="order_note" placeholder="enter order note">
+				</div>
+				<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
+					<button class="btn btn-primary btn-block" type="submit">Place Order</button>
+				</div>
+			
+				
+		</div>
+	</div>
+
+</form>
+</div>
+</div>
+</div>
+
+{% include 'layouts/loader.html' %}
+</body>
+
+
+</html>
+{% endblock %}

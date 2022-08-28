@@ -1,0 +1,100 @@
+
+{% extends 'layouts/base.html' %}
+{% load static %}
+<body class="animsition">
+{% block content %}
+
+
+
+ <!--================Home Banner Area =================-->
+  <!-- breadcrumb start-->
+  <div class="bg0 m-t-40 p-b-140 p-t-40">
+		<div class="container">
+			<div class="flex-w flex-sb-m p-b-52">
+				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+
+
+  {% if not wishlist_items %}
+  <br>
+  <br>
+  <h2 class="text-center">Your Wishlist Is Empty</h2>
+  <br>
+  <div class="text-center">
+    <a href="{% url 'store' %}" class="btn btn-primary">
+      Continue Shopping
+    </a>
+  </div>
+
+
+  {% else %}
+
+  <!--================Cart Area =================-->
+  <section class="cart_area padding_top">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                {% comment %} <th scope="col">Total</th> {% endcomment %}
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for wishlist_item  in wishlist_items %}
+                <tr>
+                  <td>
+                    <div class="media">
+                      <div class="d-flex" style="height:20vh">
+                        <img src="{{wishlist_item.product.product_image.url}}" class=" img-sm"alt="" />
+                      </div>
+                      <div class="media-body">
+                        <h4>{{wishlist_item.product.brand}}</h4>
+                        <a href="#"><p>{{wishlist_item.product.product_name}}</p></a>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <h5>${{wishlist_item.product.price}}. 00</h5>
+                  </td>
+                    
+                  <td class="text-right">
+                    <a href="{% url 'remove_wishlist_item' wishlist_item.product.id wishlist_item.id%}" class="btn_1">remove</a>
+                  </td>
+                  <td>
+                </tr>
+             {% endfor %}
+             
+              {% comment %} <tr class="bottom_button">
+                <td></td>
+                <td></td>
+                <td>
+                  <div class="cupon_text float-right">
+                    <a class="btn_1" href="#">Add To Cart</a>
+                  </div>
+                </td>
+              </tr> {% endcomment %}
+              
+            </tbody>
+          </table>
+          {% comment %} <div class="checkout_btn_inner float-right">
+            <a class="btn_1" href="{% url 'store' %}">Continue Shopping</a>
+            <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
+          </div> {% endcomment %}
+        </div>
+      </div>
+  </section>
+ 
+  <!--================End Cart Area =================-->
+  {% endif %}
+</div>
+</div>
+</div>
+</div>
+  {% include 'layouts/loader.html' %}
+
+{% endblock %}
+
+
