@@ -1,4 +1,4 @@
-{% extends "layouts/base.html" %}
+{% extends "base/base.html" %}
 {% load static %}
 {% block content %}
 
@@ -245,7 +245,9 @@
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-pic hov-img0 label-new" data-label="New">
-							<img src="{{ product.images.url }}" >
+							<a href="{{ product.get_url }}">
+							<img src="{{ product.primary_image.url }}" >
+							</a>
 
 							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 								Quick View
@@ -441,6 +443,6 @@
 		</div>
 	</div>
 
-{% include 'layouts/loader.html' %}
+{% include 'includes/loader.html' %}
 {% endblock %}
 	

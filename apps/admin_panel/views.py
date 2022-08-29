@@ -111,7 +111,7 @@ def ban_user(request,id):
     
         #Ban email
         current_site = get_current_site(request)
-        mail_subject = 'Bitstore Admin'
+        mail_subject = 'Libraria Admin'
         message = render_to_string('admin_panel/user_ban_email.html',{
             'user':user,
             'domain':current_site,
@@ -138,7 +138,7 @@ def unban_user(request,id):
     
         #Ban email
         current_site = get_current_site(request)
-        mail_subject = 'Bitstore Admin'
+        mail_subject = 'Libraria Admin'
         message = render_to_string('admin_panel/user_unban_email.html',{
             'user':user,
             'domain':current_site,
@@ -176,7 +176,7 @@ def ban_vendor(request,id):
     
         #Ban email
         current_site = get_current_site(request)
-        mail_subject = 'Bitstore Admin'
+        mail_subject = 'Libraria Admin'
         message = render_to_string('admin_panel/vendor_ban_email.html',{
             'user':user,
             'domain':current_site,
@@ -202,7 +202,7 @@ def unban_vendor(request,id):
     
         #Ban email
         current_site = get_current_site(request)
-        mail_subject = 'Bitstore Admin'
+        mail_subject = 'Libraria Admin'
         message = render_to_string('admin_panel/vendor_unban_email.html',{
             'user':user,
             'domain':current_site,
@@ -250,7 +250,7 @@ def vendor_approve(request,id):
     
         #Approval email
         current_site = get_current_site(request)
-        mail_subject = 'Bitstore vendor request'
+        mail_subject = 'Libraria vendor request'
         message = render_to_string('admin_panel/vendor_accept_email.html',{
             'user':user,
             'domain':current_site,
@@ -276,7 +276,7 @@ def vendor_reject(request,id):
         
         #rejection email
         current_site = get_current_site(request)
-        mail_subject = 'Bitstore vendor request'
+        mail_subject = 'Libraria vendor request'
         message = render_to_string('admin_panel/vendor_rejection_email.html',{
             'user':user,
             'domain':current_site,

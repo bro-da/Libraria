@@ -1,6 +1,6 @@
-{% extends 'home/main.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
-{% block title %}BitStore{%endblock title %}
+{% block title %}Libraria{%endblock title %}
 {% block content %}
 <!--================login_part Area =================-->
 
@@ -26,7 +26,7 @@
                         <img class="filter-invert" src="{% static 'vendors/vendor_reg.png' %}" alt="">
                         <br><br>
                         <h2>Hello {{request.user.first_name}}</h2>
-                        <h2>Want to List Bits on Our Shop?</h2>
+                        <h2>Want to List books on Our Shop?</h2>
                         <p>List your produts on our shop and become a part of BitFam</p>
                         <a href="#" class="btn_3">Know More</a>
                     </div>
@@ -62,4 +62,5 @@
     </div>
 </section>
 <!--================login_part end =================-->
+{% include 'includes/loader.html' %}
 {% endblock content %}
