@@ -41,11 +41,12 @@
 							<div class="slick3 gallery-lb">
 								<div class="item-slick3" data-thumb="{{single_product.images.url}}">
 									<div class="wrap-pic-w pos-relative">
-										<img src="{{single_product.images.url}}" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{single_product.images.url}}">
-											<!-- <i class="fa fa-expand"></i> -->
+										<img src="{{single_product.primary_image.url}}" alt="IMG-PRODUCT">
+										{% for i in images %}
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{i.image.url}}">
+											<i class="fa fa-expand"></i> 
 										</a>
+										{% endfor %}
 									</div>
 								</div>
 
@@ -92,7 +93,7 @@
 						<div class="p-t-33">
 							<form action="{% url 'add_cart' single_product.id %}" method="POST">
 								{% csrf_token %}
-								{% if single_product.variation_set.booktype %}
+								{% for i in single_product.variation_set.book_type %}
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-203 flex-c-m respon6">
 									booktype
@@ -116,7 +117,7 @@
 									
 								</div>
 							</div>
-							{% endif %}
+							{% endfor %}
 							{% if single_product.variation_set.editions %}
 							<div class="flex-w flex-r-m p-b-10">
 								
@@ -400,7 +401,7 @@
 						<div class="block2">
 							<div class="block2-pic hov-img0">
 								<a href="{{product.get_urls}}">
-								<img src="{{product.images.url}}" alt="IMG-PRODUCT">
+								<img src="{{product.primary_images.url}}" alt="IMG-PRODUCT">
 							</a>
 								<a href="{% url 'add_cart' product.id %}" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
 									add to cart
@@ -474,7 +475,7 @@
 								<div class="slick3 gallery-lb">
 									<div class="item-slick3" data-thumb="images/product-detail-01.jpg">
 										<div class="wrap-pic-w pos-relative">
-											<img src="{% static 'images/product-detail-01.jpg" alt="IMG-PRODUCT">
+											<img src="{% static 'images/product-detail-01.jpg' %}" alt="IMG-PRODUCT">
 
 											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
 												<i class="fa fa-expand"></i>
@@ -592,7 +593,7 @@
 		</div>
 	</div>
 
-{% include 'layouts/loader.html' %}
+{% include 'includes/loader.html' %}
 
 </body>
 </html>

@@ -2,7 +2,8 @@
 {% load static %}
 
 
-	{% block content %}
+	
+	{% block header %}
 	<body class="animsition">
 	<header class="header-v3">
 		<!-- Header desktop -->
@@ -12,28 +13,34 @@
 					
 					<!-- Logo desktop -->		
 					<a href="#" class="logo">
-						<img src="/static/store/bitimg/icon7.png" alt="IMG-LOGO">
+						<img src="{% static 'images/icons/loa2.png' %}" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop p-t-25">
 						<ul class="main-menu">
 							<li>
-								<a href="index.html">Home</a>
-								<ul class="sub-menu">
+								<a href="{% url 'home' %}">Home</a>
+								{% comment %} <ul class="sub-menu">
 									<li><a href="index.html">Homepage 1</a></li>
 									<li><a href="home-02.html">Homepage 2</a></li>
 									<li><a href="home-03.html">Homepage 3</a></li>
-								</ul>
+								</ul> {% endcomment %}
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="{% url 'store' %}">Store</a>
 							</li>
 
-							<li class="label1" data-label1="hot">
-								<a href="shoping-cart.html">Features</a>
+							{% if request.user.is_admin %}
+							<li class="nav-item">
+							  <a class="nav-link" href="{% url 'admin_home' %}">Admin Panel</a>
 							</li>
+							{% elif request.user.is_staff %}
+							<li class="nav-item">
+							  <a class="nav-link" href="{% url 'vendor_dashboard' %}">Vendor Panel</a>
+							</li>
+							{% endif %}
 
 							<li>
 								<a href="blog.html">Blog</a>
@@ -76,7 +83,7 @@
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m h-full">							
 						<div class="flex-c-m h-full p-r-25 bor6">
-							<div class="icon-header-item cl0 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="{{cart_count}}">
+							<div class="icon-header-item  icon-header-noti js-show-cart" data-notify="{{cart_count}}">
 								<i class="zmdi zmdi-shopping-cart"></i>
 							</div>
 						</div>
@@ -171,11 +178,11 @@
 		</div>
 	</header>
 
-
+{% endblock %}
 
 	
 
-
+{% block content %}
 
 	<!-- Slider -->
 	<section class="section-slide">
