@@ -1,4 +1,4 @@
-{% extends 'layouts/base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 
 <body class="animsition">
@@ -9,109 +9,120 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-<form class="bg0 p-t-75 p-b-85" action="{% url 'place_order' %}" method="POST">
-	{% csrf_token %}
-	<div class="col-md-8 col-sm-12 col-xs-12">
-		<div class="p-t-15">
-			<span class="stext-112 cl8">
-				enter first name
-			</span>
-			<div class="bor8 bg0 m-b-22">
-				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="first_name" placeholder="first name">
-				
-			</div>
-			<span class="stext-112 cl8">
-				enter second name
-				</span>
-				<div class="bor8 bg0 m-b-22">
+			<form class="row contact_form" action="{% url 'place_order' %}" method="post"  >
+				<div class="col-lg-8">
+					<h3>Billing Details</h3>
+						{% csrf_token %}
+					<div class="col-md-12 form-group p_star">
+						<input type="text" class="form-control" id="first" name="first_name" placeholder="First name" required/>
+						{% comment %} <span class="placeholder" data-placeholder="First name"></span> {% endcomment %}
+					</div>
+					<div class="col-md-12 form-group p_star">
+						<input type="text" class="form-control" id="last" name="last_name" placeholder="Last name"required/>
+						{% comment %} <span class="placeholder" data-placeholder=" name"></span> {% endcomment %}
+					</div>
+					<div class="col-md-12 form-group p_star">
+						<input type="number" class="form-control" id="number" name="phone" placeholder="Phone Number"required/>
+						{% comment %} <span class="placeholder" data-placeholder="Phone number"></span> {% endcomment %}
+					</div>
+					<div class="col-md-12 form-group p_star">
+						<input type="email" class="form-control" id="email" name="email" placeholder="email"required/>
+						{% comment %} <span class="placeholder" data-placeholder="Country"></span> {% endcomment %}
+					</div>
+					<div class="col-md-12 form-group p_star">
+						<input type="text" class="form-control" id="add1" name="address_line_1" placeholder="Address line 1" required/>
+						{% comment %} <span class="placeholder" data-placeholder="Address line 01"></span> {% endcomment %}
+					</div>
+					<div class="col-md-12 form-group p_star">
+						<input type="text" class="form-control" id="add2" name="address_line_2" placeholder="Address line 2" required/>
+						{% comment %} <span class="placeholder" data-placeholder="Address line 02"></span> {% endcomment %}
+					</div>
+					<div class="col-md-12 form-group p_star">
+						<input type="text" class="form-control" id="city" name="city" placeholder="City" required/>
+						{% comment %} <span class="placeholder" data-placeholder="Town/City"></span> {% endcomment %}
+					</div>
+					<div class="col-md-12 form-group p_star">
+						<input type="text" class="form-control" id="state" name="state" placeholder="State" required/>
+						{% comment %} <span class="placeholder" data-placeholder="District"></span> {% endcomment %}
+					</div>
+					<div class="col-md-12 form-group p_star">
+						<input type="text" class="form-control" id="country" name="country" placeholder="Country" required/>
+						{% comment %} <span class="placeholder" data-placeholder="District"></span> {% endcomment %}
+					</div>
+					<div class="col-md-12 form-group p_star">
+						<input type="text" class="form-control" id="pincode" name="pincode" placeholder="Pincode" required/>
+						{% comment %} <span class="placeholder" data-placeholder="Postcode"></span> {% endcomment %}
+					</div>
 					
-				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="last_name" placeholder="last name">
-			</div>
-			<span class="stext-112 cl8">
-				enter email
-				</span>
-			<div class="bor8 bg0 m-b-22">
-				
-				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="email" placeholder="@email.com">
-			</div>
-			<span class="stext-112 cl8">
-				enter phone number
-				</span>
-			<div class="bor8 bg0 m-b-22">
-				
-				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="phone" placeholder="phone number">
-
-			</div>
-			<span class="stext-112 cl8">
-				enter address 1
-				</span>
-			<div class="bor8 bg0 m-b-22">
-				
-				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="address_line_1" placeholder="address 1(required)">
-			</div>
-			<span class="stext-112 cl8">
-				enter address 2
-			</span>
-			<div class="bor8 bg0 m-b-22">
+					<div class="col-md-12 form-group">
+						<div class="creat_account">
+						<h3>Shipping Details</h3>
+						</div>
+						<input class="form-control" name="order_note" id="order_note" rows="3"
+						placeholder="Order Notes"></input>
+					</div>
 					
-				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="address_line_2" placeholder="city">
-			</div>
-				<span class="stext-112 cl8">
-					city
-				</span>
-				<div class="bor8 bg0 m-b-22">
-					
-					<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="city" placeholder="city">
 				</div>
-				<span class="stext-112 cl8">
-					state
-				</span>
-				<div class="bor8 bg0 m-b-22">
-					<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="state">
-				</div>
-			
+				<div class="col-lg-4">
+					<div class="order_box">
+						<h2>Your Order</h2>
+						<ul class="list">
+							<li>
+							<a href="#">Product
+								<span>Total</span>
+							</a>
+							</li>
+							{% for cart_item in cart_items %}
+							<li>
+							<a href="{{cart_item.product.get_url}}" class="d-flex">
+								<div>
+									<p style='max-width: 12vw;'>{{cart_item.product.product_name | truncatechars:100}}</p>
+									{% if cart_item.variations.all %}
+									{% for item in cart_item.variations.all %}
+										<p>
+											{{item.variation_category | capfirst}} : {{item.variation_value | capfirst}}
+										</p>
+									{% endfor %}                                
+									{% endif %}
+								</div>
+								<span class="middle ml-0 mr-2" style="text-align:center">x {{cart_item.quantity}}</span>
+								<span class="last">Rs.{{cart_item.product.price}}</span>
+							</a>
+							</li>
+							{% endfor %}
+						</ul>
+						<ul class="list list_2">
+							<li>
+							<a href="#">Subtotal
+								<span>Rs.{{total}}</span>
+							</a>
+							</li>
+							<li>
+							<a href="#">Tax
+								<span>Rs.{{tax}}</span>
+							</a>
+							</li>
+							<li>
+							<a href="#">Total
+								<span>Rs.{{grand_total}}</span>
+							</a>
+							</li>
+						</ul>
 
-			<!-- <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-				<select class="js-select2" name="payment">
-					<option>payment</option>
-					<option>cash on delivery</option>
-					<option>online payment</option>
-				</select>
-				<div class="dropDownSelect2"></div>
-			</div> -->
-
-			<span class="stext-112 cl8">
-				country
-				</span>
-			<div class="bor8 bg0 m-b-22">
-				
-				<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="country" placeholder="country">
-			</div>
-		
-			
-				
-				
-				<span class="stext-112 cl8">
-					enter order note
-					</span>
-				<div class="bor8 bg0 m-b-22">
-					
-					<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="order_note" placeholder="enter order note">
+						<div class="creat_account">
+							<input type="checkbox" onchange="this.setCustomValidity(validity.valueMissing ? 'Please indicate that you accept the Terms and Conditions' : '');" required id="f-option4" name="selector" />
+							<label for="f-option4">I've read and accept the </label>
+							<a href="#">terms & conditions*</a>
+						</div>
+						<button class="btn_3" type="submit" name="submit">Proceed to Payment</button>
+					</div>
 				</div>
-				<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-					<button class="btn btn-primary btn-block" type="submit">Place Order</button>
-				</div>
-			
-				
-		</div>
-	</div>
-
-</form>
+			</form>
 </div>
 </div>
 </div>
 
-{% include 'layouts/loader.html' %}
+{% include 'includes/loader.html' %}
 </body>
 
 
