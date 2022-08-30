@@ -10,90 +10,96 @@
   <!-- breadcrumb start-->
   <div class="bg0 m-t-40 p-b-140 p-t-40">
 		<div class="container">
-			<div class="flex-w flex-sb-m p-b-52">
-				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+			
 
 
-  {% if not wishlist_items %}
-  <br>
-  <br>
-  <h2 class="text-center">Your Wishlist Is Empty</h2>
-  <br>
-  <div class="text-center">
-    <a href="{% url 'store' %}" class="btn btn-primary">
-      Continue Shopping
-    </a>
-  </div>
+          {% if not cart_items %}
 
-
-  {% else %}
-
-  <!--================Cart Area =================-->
-  <section class="cart_area padding_top">
-    <div class="container">
-      <div class="cart_inner">
-        <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Price</th>
-                {% comment %} <th scope="col">Total</th> {% endcomment %}
-              </tr>
-            </thead>
-            <tbody>
-
-              {% for wishlist_item  in wishlist_items %}
-                <tr>
-                  <td>
-                    <div class="media">
-                      <div class="d-flex" style="height:20vh">
-                        <img src="{{wishlist_item.product.product_image.url}}" class=" img-sm"alt="" />
+          <!-- subscribe_area part start-->
+          <section class="">
+              <div class="container">
+                  <div class="row justify-content-center">
+                      <div class="col-lg-7">
+                          <div class="subscribe_area_text text-center mt-3">
+                              <h2>Your Wishlist is Empty !!</h2>
+                              <hr>
+                              <h>Add Your Favorites Books Now</h5>
+                              <br><br>
+                              <div class="">
+                                  <a href="{% url 'store' %}" class="input-group-text btn_3" id="basic-addon2">Continue Shopping</a>
+                              </div>
+                          </div>
                       </div>
-                      <div class="media-body">
-                        <h4>{{wishlist_item.product.brand}}</h4>
-                        <a href="#"><p>{{wishlist_item.product.product_name}}</p></a>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <h5>${{wishlist_item.product.price}}. 00</h5>
-                  </td>
-                    
-                  <td class="text-right">
-                    <a href="{% url 'remove_wishlist_item' wishlist_item.product.id wishlist_item.id%}" class="btn_1">remove</a>
-                  </td>
-                  <td>
-                </tr>
-             {% endfor %}
-             
-              {% comment %} <tr class="bottom_button">
-                <td></td>
-                <td></td>
-                <td>
-                  <div class="cupon_text float-right">
-                    <a class="btn_1" href="#">Add To Cart</a>
                   </div>
-                </td>
-              </tr> {% endcomment %}
-              
-            </tbody>
-          </table>
-          {% comment %} <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="{% url 'store' %}">Continue Shopping</a>
-            <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
-          </div> {% endcomment %}
-        </div>
-      </div>
-  </section>
- 
-  <!--================End Cart Area =================-->
-  {% endif %}
+              </div>
+          </section>
+          <!--::subscribe_area part end::-->
+          
+          {% else %}
+          <section class="cart_area">
+          <div class="container">
+              <div class="cart_inner">
+              <div class="table-responsive">
+                  <hr>
+                  <table class="table">
+                      <div class="checkout_btn_inner float-right p-5">
+                          <a class="btn_1" href="{% url 'store' %}"><button type="button" class="btn btn-primary">continue shopping</button></a>
+                      </div>
+                      <thead>
+                          <tr>
+                          <th scope="col">Products</th>
+                          <th scope="col">Price</th>
+                          <th scope="col"></th>
+                          <th></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {% for cart_item in cart_items %}
+                          <tr>
+                              <td>
+                                  <div class="media">
+                                      <div class="d-flex">
+                                          <img src="{{cart_item.product.primary_image.url}}" alt="" style="height:150px"/>
+                                      </div>
+                                      <div class="media-body">
+                                          <a href="{{ cart_item.product.get_url }}"><h3 class="stext-102 cl3 p-t-23" >{{cart_item.product.product_name}}</h3></a>
+                                          <p class="stext-102 cl3 p-t-23">Author: {{cart_item.product.author | truncatechars:170}}</p>
+                                          {% if cart_item.variations.all %}
+                                              {% for item in cart_item.variations.all %}
+                                                  <p>
+                                                      {{item.variation_category}} : {{item.variation_value}}
+                                                  </p>
+                                              {% endfor %}                                
+                                          {% endif %}
+                                      </div>
+                                  </div>
+                              </td>
+                              <td>
+                                  <h5>Rs.{{cart_item.product.price}}</h5>
+                              </td>
+                              <td>
+                                  <div class="product">
+                                  </div>
+                              </td>
+                              <td>
+                                  <a class="btn_1 m-2" href="{% url 'remove_wishlist' cart_item.product.id %}" ><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure?')">remove</button></a>
+                                  <a class="btn_1 m-2" href="{{cart_item.product.get_url}}"><button type="button" class="btn btn-success">buy now</button></a>
+                              </td>
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                  </table>
+                  
+              </div>
+              </div>
+          </section>
+          <!--================End Cart Area =================-->
+          {% endif %}
 </div>
 </div>
 </div>
 </div>
-  {% include 'layouts/loader.html' %}
+  {% include 'includes/loader.html' %}
 
 {% endblock %}
 

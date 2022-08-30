@@ -1,5 +1,5 @@
-from category.models import Category
-from store.models import Product
+from apps.category.models import Category
+from apps.store.models import Product
 
 
 def menu_links(request):
